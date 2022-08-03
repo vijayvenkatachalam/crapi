@@ -1,9 +1,21 @@
 server {
   listen 80;
+  listen 443 ssl;
+  ssl_certificate_by_lua_block {
+    auto_ssl:ssl_certificate()
+  }
+  ssl_certificate /etc/ssl/resty-auto-ssl-fallback.crt;
+  ssl_certificate_key /etc/ssl/resty-auto-ssl-fallback.key;
   server_name _;
   client_max_body_size 50M;
   index index.html;
   root /usr/share/nginx/html;
+
+  location /.well-known/acme-challenge/ {
+    content_by_lua_block {
+      auto_ssl:challenge_server()
+    }
+  }
 
   location /community/ {
     rewrite_by_lua_block {

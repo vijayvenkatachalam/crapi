@@ -43,10 +43,10 @@ RUN openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 \
 RUN rm /etc/nginx/conf.d/default.conf
 COPY --from=build /app/build /usr/share/nginx/html
 COPY ./nginx-wrapper.sh /etc/nginx/nginx-wrapper.sh
-COPY ./nginx.conf.default.template /etc/nginx/conf.d/default.conf.template
+COPY ./crapi.conf.template /etc/nginx/conf.d/crapi.conf.template
 
-COPY ./nginx.conf.template /usr/local/openresty/nginx/conf/nginx.conf
-RUN echo "daemon off;" >> /usr/local/openresty/nginx/conf/nginx.conf
+COPY ./nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
+# RUN echo "daemon off;" >> /usr/local/openresty/nginx/conf/nginx.conf
 EXPOSE 80
 EXPOSE 443
 

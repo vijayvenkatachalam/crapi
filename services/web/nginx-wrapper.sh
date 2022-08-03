@@ -14,6 +14,6 @@
 # limitations under the License.
 
 echo "Starting as user $(whoami)"
-envsubst '${COMMUNITY_SERVICE} ${IDENTITY_SERVICE} ${WORKSHOP_SERVICE}' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf
+envsubst '${COMMUNITY_SERVICE} ${IDENTITY_SERVICE} ${WORKSHOP_SERVICE}' < /etc/nginx/conf.d/crapi.conf.template > /etc/nginx/conf.d/default.conf
 openresty
 exec "$@"
