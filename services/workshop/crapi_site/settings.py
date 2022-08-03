@@ -46,6 +46,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env_value('SECRET_KEY')
 
+# Enable it if Testing
+IS_TESTING = os.environ.get('IS_TESTING', False)
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
 
@@ -175,6 +178,10 @@ DATABASES = {
             'username': get_env_value('MONGO_DB_USER'),
             'password': get_env_value('MONGO_DB_PASSWORD'),
             'authSource': 'admin'
+        },
+        'TEST': {
+            'NAME': 'test_crapi_mongo',
+            'USER': get_env_value('MONGO_DB_USER')
         }
     }
 }
