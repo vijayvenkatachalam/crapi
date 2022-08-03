@@ -30,8 +30,8 @@ FROM openresty/openresty:1.17.8.2-alpine-fat
 RUN apk add gettext curl gcc make bash diffutils findutils grep coreutils sed 
 ENV PATH /usr/local/openresty/openssl/bin:$PATH
 RUN /usr/local/openresty/luajit/bin/luarocks install lua-resty-auto-ssl
-RUN mkdir /etc/resty-auto-ssl
-RUN chown root /etc/resty-auto-ssl
+RUN mkdir -p  /etc/resty-auto-ssl/library/file
+RUN chown -R nobody /etc/resty-auto-ssl
 ENV OPENSSL_CONF /etc/ssl/openssl.cnf
 RUN openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 \
    -subj '/CN=sni-support-required-for-valid-ssl' \
@@ -48,6 +48,6 @@ COPY ./nginx.conf.default.template /etc/nginx/conf.d/default.conf.template
 COPY ./nginx.conf.template /usr/local/openresty/nginx/conf/nginx.conf
 RUN echo "daemon off;" >> /usr/local/openresty/nginx/conf/nginx.conf
 EXPOSE 80
-
+EXPOSE 443
 
 CMD /etc/nginx/nginx-wrapper.sh
