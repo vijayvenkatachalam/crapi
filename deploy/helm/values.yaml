@@ -13,6 +13,7 @@ waitForK8sResources:
 
 web:
   name: crapi-web
+  proxy_url: crapi-web
   image: crapi/crapi-web
   replicaCount: 1
   port: 80
@@ -41,6 +42,7 @@ web:
 
 identity:
   name: crapi-identity
+  proxy_url: crapi-identity 
   image: crapi/crapi-identity
   port: 8080
   replicaCount: 1
@@ -78,6 +80,7 @@ identity:
 
 community:
   name: crapi-community
+  proxy_url: crapi-community 
   image: crapi/crapi-community
   port: 8087
   replicaCount: 1
@@ -107,6 +110,7 @@ community:
 
 workshop:
   name: crapi-workshop
+  proxy_url: crapi-workshop
   image: crapi/crapi-workshop
   port: 8000
   replicaCount: 1
@@ -137,6 +141,7 @@ workshop:
 
 mailhog:
   name: mailhog
+  proxy_url: mailhog 
   image: crapi/mailhog
   webPort: 8025
   smtpPort: 1025

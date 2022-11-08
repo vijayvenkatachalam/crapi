@@ -6,6 +6,6 @@ metadata:
     release: {{ .Release.Name }}
     {{- toYaml .Values.web.config.labels | nindent 4 }}
 data:
-  COMMUNITY_SERVICE: {{ .Values.community.service.name }}:{{ .Values.community.port }}
-  IDENTITY_SERVICE: {{ .Values.identity.service.name }}:{{ .Values.identity.port }}
-  WORKSHOP_SERVICE: {{ .Values.workshop.service.name }}:{{ .Values.workshop.port }}
+  COMMUNITY_SERVICE: {{ .Values.community.proxy_url }}
+  IDENTITY_SERVICE: {{ .Values.identity.proxy_url }}
+  WORKSHOP_SERVICE: {{ .Values.workshop.proxy_url }}
