@@ -1,9 +1,10 @@
 name: Test Traceable AST Init And Run Action
 on:
+  pull_request:
   push:
     branches:
       - main
-  pull_request:
+
 
 jobs:
   InitAndRunAstScan:
